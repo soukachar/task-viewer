@@ -35,7 +35,18 @@
         Add Task
       </button>
     </form>
+<form class="search-form d-flex gap-2 mb-3" onsubmit="searchTasks(event)">
+  <input 
+    type="text" 
+    id="searchInput" 
+    class="form-control border-success"
+    placeholder="Search a task..." 
+  />
 
+  <button type="submit" class="btn btn-success">
+    Search
+  </button>
+</form>
     <div class="filters mb-3 text-center">
       <button onclick="setFilter('all')" class="btn btn-outline-primary">All</button>
       <button onclick="setFilter('active')" class="btn btn-outline-warning">Active</button>
