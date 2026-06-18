@@ -34,6 +34,8 @@ function addTask(event) {
 
   tasks.push(newTask);
   saveTasks();
+
+  currentFilter = "all";
   renderTasks();
 
   taskInput.value = "";
@@ -72,27 +74,47 @@ function renderTasks() {
   }
 
   if (filteredTasks.length === 0) {
-    taskList.innerHTML = "<p>No tasks found.</p>";
+    taskList.innerHTML = `
+      <li class="list-group-item text-center text-muted">
+        No tasks found.
+      </li>
+    `;
     return;
   }
 
   filteredTasks.forEach(task => {
     const li = document.createElement("li");
 
-    li.innerHTML = `
-      <span>${task.text}</span>
-      <div>
-        <button onclick="toggleTask(${task.id})">✔</button>
-        <button onclick="deleteTask(${task.id})">❌</button>
-      </div>
-    `;
+    li.className = "list-group-item d-flex justify-content-between align-items-center";
 
     if (task.completed) {
-      li.classList.add("completed");
+      li.classList.add("list-group-item-success");
     }
+
+    li.innerHTML = `
+      <div>
+        <span class="${task.completed ? 'text-decoration-line-through' : ''}">
+          ${task.text}
+        </span>
+
+        <span class="badge ${task.completed ? 'bg-success' : 'bg-warning text-dark'} ms-2">
+          ${task.completed ? 'Completed' : 'Active'}
+        </span>
+      </div>
+
+      <div>
+        <button class="btn btn-sm btn-success me-2" onclick="toggleTask(${task.id})">
+          ✔
+        </button>
+
+        <button class="btn btn-sm btn-danger" onclick="deleteTask(${task.id})">
+          ❌
+        </button>
+      </div>
+    `;
 
     taskList.appendChild(li);
   });
 }
 
-renderTasks();s
+renderTasks();
