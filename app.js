@@ -8,6 +8,7 @@ const defaultTasks = [
 let tasks = JSON.parse(localStorage.getItem("task-viewer-tasks")) || defaultTasks;
 
 let currentFilter = "all";
+let searchTerm = "";
 
 const taskTableBody = document.getElementById("taskTableBody");
 
@@ -36,9 +37,21 @@ function addTask(event) {
   saveTasks();
 
   currentFilter = "all";
-  renderTasks();
+  searchTerm = "";
 
+  document.getElementById("searchInput").value = "";
   taskInput.value = "";
+
+  renderTasks();
+}
+
+function searchTasks(event) {
+  event.preventDefault();
+
+  const searchInput = document.getElementById("searchInput");
+  searchTerm = searchInput.value.trim().toLowerCase();
+
+  renderTasks();
 }
 
 function setFilter(filter) {
@@ -73,10 +86,18 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => task.completed);
   }
 
+  if (searchTerm !== "") {
+    filteredTasks = filteredTasks.filter(task =>
+      task.text.toLowerCase().includes(searchTerm)
+    );
+  }
+
   if (filteredTasks.length === 0) {
     taskTableBody.innerHTML = `
       <tr>
-        <td colspan="3" class="text-muted">No tasks found.</td>
+        <td colspan="3" class="text-muted">
+          No tasks found.
+        </td>
       </tr>
     `;
     return;
