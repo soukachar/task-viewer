@@ -75,6 +75,31 @@ function toggleTask(id) {
   }
 }
 
+function editTask(id) {
+  const task = tasks.find(task => task.id === id);
+
+  if (!task) {
+    return;
+  }
+
+  const newText = prompt("Edit task:", task.text);
+
+  if (newText === null) {
+    return;
+  }
+
+  const trimmedText = newText.trim();
+
+  if (trimmedText === "") {
+    alert("Task cannot be empty.");
+    return;
+  }
+
+  task.text = trimmedText;
+  saveTasks();
+  renderTasks();
+}
+
 function renderTasks() {
   taskTableBody.innerHTML = "";
 
@@ -124,6 +149,10 @@ function renderTasks() {
       <td>
         <button class="btn btn-success btn-sm me-2" onclick="toggleTask(${task.id})">
           ✔
+        </button>
+
+        <button class="btn btn-primary btn-sm me-2" onclick="editTask(${task.id})">
+          ✏️
         </button>
 
         <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">
