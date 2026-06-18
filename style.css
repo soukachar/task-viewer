@@ -101,5 +101,18 @@ th {
 
   .table {
     font-size: 15px;
+
+
+
+
+    
   }
+}
+#pagination button {
+  min-width: 45px;
+}
+
+#pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
