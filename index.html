@@ -9,11 +9,20 @@
 <body>
 
   <div class="container">
-    <h1> Task Viewer Dashboard</h1>
+    <h1>Task Viewer Dashboard</h1>
 
     <p class="subtitle">
       Predefined tasks for a software student
     </p>
+
+    <form class="add-task-form" onsubmit="addTask(event)">
+      <input 
+        type="text" 
+        id="taskInput" 
+        placeholder="Enter a new task..." 
+      />
+      <button type="submit">Add Task</button>
+    </form>
 
     <div class="filters">
       <button onclick="setFilter('all')">All</button>
