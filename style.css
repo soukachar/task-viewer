@@ -22,30 +22,39 @@ h1 {
 .subtitle {
   font-size: 18px;
   margin-bottom: 25px;
+  color: #6c757d;
 }
 
-/* Add task form */
-.add-task-form {
+/* Add task and search forms */
+.task-form {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.add-task-form input {
+.task-form input {
   padding: 12px;
   flex: 1;
   font-size: 16px;
+  border: 2px solid #198754;
 }
 
-.add-task-form button {
+.task-form input:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+/* Green buttons */
+.task-form button {
   padding: 12px 20px;
-}
-
-/* Green Add Task button */
-.add-task-form .btn-success {
   background-color: #198754;
   color: white;
   border: none;
+  min-width: 120px;
+}
+
+.task-form button:hover {
+  background-color: #157347;
 }
 
 /* Filters */
@@ -70,4 +79,27 @@ th {
 
 .btn {
   font-weight: 500;
+}
+
+/* Responsive for phone */
+@media (max-width: 576px) {
+  .dashboard-card {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .task-form {
+    flex-direction: column;
+  }
+
+  .task-form button {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 15px;
+  }
 }
