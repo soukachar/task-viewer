@@ -41,8 +41,19 @@
       <button onclick="setFilter('completed')" class="btn btn-outline-success">Completed</button>
     </div>
 
-    <ul id="taskList"></ul>
-  </div>
+<div class="table-responsive mt-3">
+  <table class="table table-bordered table-striped align-middle text-center">
+    <thead class="table-success">
+      <tr>
+        <th>Subject / Task</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody id="taskTableBody"></tbody>
+  </table>
+</div>  </div>
 
   <!-- Bootstrap JS -->
   <script 
