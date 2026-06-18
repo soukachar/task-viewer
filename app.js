@@ -9,7 +9,7 @@ let tasks = JSON.parse(localStorage.getItem("task-viewer-tasks")) || defaultTask
 
 let currentFilter = "all";
 
-const taskList = document.getElementById("taskList");
+const taskTableBody = document.getElementById("taskTableBody");
 
 function saveTasks() {
   localStorage.setItem("task-viewer-tasks", JSON.stringify(tasks));
@@ -63,7 +63,7 @@ function toggleTask(id) {
 }
 
 function renderTasks() {
-  taskList.innerHTML = "";
+  taskTableBody.innerHTML = "";
 
   let filteredTasks = tasks;
 
@@ -74,46 +74,44 @@ function renderTasks() {
   }
 
   if (filteredTasks.length === 0) {
-    taskList.innerHTML = `
-      <li class="list-group-item text-center text-muted">
-        No tasks found.
-      </li>
+    taskTableBody.innerHTML = `
+      <tr>
+        <td colspan="3" class="text-muted">No tasks found.</td>
+      </tr>
     `;
     return;
   }
 
   filteredTasks.forEach(task => {
-    const li = document.createElement("li");
-
-    li.className = "list-group-item d-flex justify-content-between align-items-center";
+    const row = document.createElement("tr");
 
     if (task.completed) {
-      li.classList.add("list-group-item-success");
+      row.classList.add("table-success");
     }
 
-    li.innerHTML = `
-      <div>
-        <span class="${task.completed ? 'text-decoration-line-through' : ''}">
-          ${task.text}
-        </span>
+    row.innerHTML = `
+      <td class="${task.completed ? 'text-decoration-line-through' : ''}">
+        ${task.text}
+      </td>
 
-        <span class="badge ${task.completed ? 'bg-success' : 'bg-warning text-dark'} ms-2">
+      <td>
+        <span class="badge ${task.completed ? 'bg-success' : 'bg-warning text-dark'}">
           ${task.completed ? 'Completed' : 'Active'}
         </span>
-      </div>
+      </td>
 
-      <div>
-        <button class="btn btn-sm btn-success me-2" onclick="toggleTask(${task.id})">
+      <td>
+        <button class="btn btn-success btn-sm me-2" onclick="toggleTask(${task.id})">
           ✔
         </button>
 
-        <button class="btn btn-sm btn-danger" onclick="deleteTask(${task.id})">
+        <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">
           ❌
         </button>
-      </div>
+      </td>
     `;
 
-    taskList.appendChild(li);
+    taskTableBody.appendChild(row);
   });
 }
 
