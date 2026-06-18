@@ -15,6 +15,30 @@ function saveTasks() {
   localStorage.setItem("task-viewer-tasks", JSON.stringify(tasks));
 }
 
+function addTask(event) {
+  event.preventDefault();
+
+  const taskInput = document.getElementById("taskInput");
+  const taskText = taskInput.value.trim();
+
+  if (taskText === "") {
+    alert("Please enter a task.");
+    return;
+  }
+
+  const newTask = {
+    id: Date.now(),
+    text: taskText,
+    completed: false
+  };
+
+  tasks.push(newTask);
+  saveTasks();
+  renderTasks();
+
+  taskInput.value = "";
+}
+
 function setFilter(filter) {
   currentFilter = filter;
   renderTasks();
@@ -47,6 +71,11 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => task.completed);
   }
 
+  if (filteredTasks.length === 0) {
+    taskList.innerHTML = "<p>No tasks found.</p>";
+    return;
+  }
+
   filteredTasks.forEach(task => {
     const li = document.createElement("li");
 
@@ -66,4 +95,4 @@ function renderTasks() {
   });
 }
 
-renderTasks();
+renderTasks();s
