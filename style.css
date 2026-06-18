@@ -1,86 +1,15 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
 }
 
-.container {
-  background: white;
-  padding: 20px;
-  width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.card {
+  background-color: white;
 }
 
-h1 {
-  text-align: center;
-}
-
-.input-section {
-  display: flex;
-  gap: 5px;
-}
-
-input, select {
-  flex: 1;
-  padding: 8px;
+.list-group-item {
+  font-size: 18px;
 }
 
 button {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.filters {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background: #eee;
-  margin-top: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 5px;
-}
-
-.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-.add-task-form {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.add-task-form input {
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-.add-task-form button {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2563eb;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.add-task-form button:hover {
-  background-color: #1d4ed8;
+  font-weight: 500;
 }
