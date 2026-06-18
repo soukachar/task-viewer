@@ -1,13 +1,19 @@
-const tasks = [
+const defaultTasks = [
   { id: 1, text: "Learn HTML basics", completed: true },
   { id: 2, text: "Practice JavaScript DOM", completed: false },
   { id: 3, text: "Build small projects", completed: false },
   { id: 4, text: "Push code to GitHub", completed: true }
 ];
 
+let tasks = JSON.parse(localStorage.getItem("task-viewer-tasks")) || defaultTasks;
+
 let currentFilter = "all";
 
 const taskList = document.getElementById("taskList");
+
+function saveTasks() {
+  localStorage.setItem("task-viewer-tasks", JSON.stringify(tasks));
+}
 
 function setFilter(filter) {
   currentFilter = filter;
@@ -15,40 +21,46 @@ function setFilter(filter) {
 }
 
 function deleteTask(id) {
-  const index = tasks.findIndex(t => t.id === id);
-  if (index !== -1) tasks.splice(index, 1);
+  tasks = tasks.filter(task => task.id !== id);
+  saveTasks();
   renderTasks();
 }
 
 function toggleTask(id) {
-  const task = tasks.find(t => t.id === id);
-  if (task) task.completed = !task.completed;
-  renderTasks();
+  const task = tasks.find(task => task.id === id);
+
+  if (task) {
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
+  }
 }
 
 function renderTasks() {
   taskList.innerHTML = "";
 
-  let filtered = tasks;
+  let filteredTasks = tasks;
 
   if (currentFilter === "active") {
-    filtered = tasks.filter(t => !t.completed);
+    filteredTasks = tasks.filter(task => !task.completed);
   } else if (currentFilter === "completed") {
-    filtered = tasks.filter(t => t.completed);
+    filteredTasks = tasks.filter(task => task.completed);
   }
 
-  filtered.forEach(task => {
+  filteredTasks.forEach(task => {
     const li = document.createElement("li");
 
     li.innerHTML = `
-      <span class="${task.completed ? "completed" : ""}">
-        ${task.text}
-      </span>
+      <span>${task.text}</span>
       <div>
         <button onclick="toggleTask(${task.id})">✔</button>
         <button onclick="deleteTask(${task.id})">❌</button>
       </div>
     `;
+
+    if (task.completed) {
+      li.classList.add("completed");
+    }
 
     taskList.appendChild(li);
   });
