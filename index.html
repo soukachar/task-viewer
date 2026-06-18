@@ -16,17 +16,18 @@
 
 <body>
 
-  <div class="container">
-    <h1>Task Viewer Dashboard</h1>
+  <div class="container mt-5">
+    <h1 class="text-center mb-3">Task Viewer Dashboard</h1>
 
-    <p class="subtitle">
+    <p class="subtitle text-center">
       Predefined tasks for a software student
     </p>
 
-    <form class="add-task-form" onsubmit="addTask(event)">
+    <form class="add-task-form d-flex gap-2 mb-3" onsubmit="addTask(event)">
       <input 
         type="text" 
         id="taskInput" 
+        class="form-control"
         placeholder="Enter a new task..." 
       />
 
@@ -35,25 +36,26 @@
       </button>
     </form>
 
-    <div class="filters">
+    <div class="filters mb-3 text-center">
       <button onclick="setFilter('all')" class="btn btn-outline-primary">All</button>
       <button onclick="setFilter('active')" class="btn btn-outline-warning">Active</button>
       <button onclick="setFilter('completed')" class="btn btn-outline-success">Completed</button>
     </div>
 
-<div class="table-responsive mt-3">
-  <table class="table table-bordered table-striped align-middle text-center">
-    <thead class="table-success">
-      <tr>
-        <th>Subject / Task</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+    <div class="table-responsive mt-3">
+      <table class="table table-bordered table-striped align-middle text-center">
+        <thead class="table-success">
+          <tr>
+            <th>Subject / Task</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-    <tbody id="taskTableBody"></tbody>
-  </table>
-</div>  </div>
+        <tbody id="taskTableBody"></tbody>
+      </table>
+    </div>
+  </div>
 
   <!-- Bootstrap JS -->
   <script 
