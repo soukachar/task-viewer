@@ -1,6 +1,6 @@
 # Task Viewer Dashboard
 
-Task Viewer Dashboard is a simple and interactive web application built with **HTML, CSS, and vanilla JavaScript**.  
+Task Viewer Dashboard is a simple and interactive web application built with **HTML, CSS, and JavaScript**.  
 It allows users to view tasks, filter them by status, and interact with a clean task dashboard interface.
 
 This project was created as a code sample to demonstrate my understanding of front-end development fundamentals, including DOM manipulation, event handling, arrays, objects, and dynamic rendering.
