@@ -10,6 +10,7 @@ body {
   font-size: 18px;
 }
 
-button {
-  font-weight: 500;
+.add-task-form .btn-success {
+  background-color: #198754;
+  color: white;
 }
