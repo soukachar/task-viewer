@@ -77,9 +77,14 @@ function setFilter(filter) {
 }
 
 function deleteTask(id) {
+  const confirmation = confirm("Are you sure you want to delete this task?");
+
+  if (!confirmation) {
+    return;
+  }
+
   tasks = tasks.filter(task => task.id !== id);
   saveTasks();
-
   renderTasks();
 }
 
