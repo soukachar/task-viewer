@@ -197,9 +197,9 @@ function renderTasks() {
           Edit
         </button>
 
-        <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">
-          ❌
-        </button>
+      <button class="btn btn-danger btn-sm" onclick="deleteTask(${task.id})">
+       ❌
+</button>
       </td>
     `;
 
